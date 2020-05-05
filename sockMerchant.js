@@ -26,6 +26,24 @@ function readLine() {
 
 // Complete the sockMerchant function below.
 function sockMerchant(n, ar) {
+    const grouped = ar.reduce((acc, color) => {
+        if (!acc.hasOwnProperty('pairs')) {
+            // create a place to count the pairs of socks
+            acc['pairs'] = 0
+        }
+        if (acc.hasOwnProperty(color)) {
+            // count the pair
+            acc['pairs'] = acc['pairs'] += 1
+            // remove the unmatched sock
+            delete acc[color]
+        } else {
+            // set new potential pair
+            acc[color] = 1
+        }
+        return acc
+    }, {})
+
+    return grouped.pairs
 }
 
 function main() {
